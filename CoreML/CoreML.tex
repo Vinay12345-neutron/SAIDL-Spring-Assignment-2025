@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{SAiDL Spring Assignment 2025: Core ML Report}
+\author{Vinay R Jumani}
+\date{March 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Robustness in machine learning is crucial when handling real-world datasets prone to noisy labels. The goal of this assignment is to explore techniques to improve robustness using normalized losses and the Active-Passive Loss (APL) framework.
+
+\section{Data Preparation}
+To evaluate robustness, we introduce symmetric noise into the CIFAR-10 dataset. A noise rate $\eta \in [0.2, 0.8]$ is applied by randomly flipping labels. This helps assess how models perform under different noise conditions.
+
+\section{Normalized Losses}
+We implemented the following loss functions:
+\begin{itemize}
+    \item Cross-Entropy Loss (CE)
+    \item Focal Loss (FL)
+    \item Normalized Cross-Entropy Loss (NCE)
+    \item Normalized Focal Loss (NFL)
+\end{itemize}
+
+A simple CNN architecture was trained using each of these losses across different noise levels. The performance was evaluated using accuracy metrics.
+
+\section{Active-Passive Loss Framework}
+APL balances robustness and performance by combining an active loss (NCE) with a passive loss (Reverse Cross-Entropy). The model was trained using APL for various noise levels, and its effectiveness was compared to the previous approaches.
+
+\section{Results and Discussion}
+Figures \ref{fig:ce_vs_nce} and \ref{fig:apl_performance} illustrate the impact of different loss functions on noisy CIFAR-10 data.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{results/loss_comparison.png}
+    \caption{Performance comparison of different loss functions under varying noise levels.}
+    \label{fig:ce_vs_nce}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{results/apl_performance.png}
+    \caption{Performance of APL loss compared to other loss functions.}
+    \label{fig:apl_performance}
+\end{figure}
+
+\section{Conclusion}
+The results show that normalized losses improve robustness against label noise, and the APL framework further enhances model performance. Future work includes testing these methods on different datasets and extending them to asymmetric noise scenarios.
+
+\section{References}
+\begin{thebibliography}{9}
+\bibitem{nce}
+Zhang, X. et al., \textit{Normalized Loss Functions for Deep Learning with Noisy Labels}, NeurIPS 2020.
+
+\bibitem{apl}
+Xiao, H. et al., \textit{Active-Passive Loss for Robust Learning}, CVPR 2023.
+
+\bibitem{pytorch}
+Paszke, A. et al., \textit{PyTorch: An Imperative Style, High-Performance Deep Learning Library}, NeurIPS 2019.
+
+\end{thebibliography}
+
+\end{document}
+
